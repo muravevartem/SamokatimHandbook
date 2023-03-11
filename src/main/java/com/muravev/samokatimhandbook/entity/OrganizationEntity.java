@@ -1,6 +1,6 @@
 package com.muravev.samokatimhandbook.entity;
 
-import com.muravev.samokatimhandbook.model.OrganizationStatus;
+import com.muravev.samokatimhandbook.model.response.OrganizationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +30,7 @@ public class OrganizationEntity extends AbstractEntity<Long> {
     private String tel;
     private String email;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             joinColumns = @JoinColumn(name = "org_id"),
             inverseJoinColumns = @JoinColumn(name = "admin_id"),
@@ -38,7 +38,7 @@ public class OrganizationEntity extends AbstractEntity<Long> {
     )
     private Set<UserEntity> admins;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             joinColumns = @JoinColumn(name = "org_id"),
             inverseJoinColumns = @JoinColumn(name = "lead_id"),

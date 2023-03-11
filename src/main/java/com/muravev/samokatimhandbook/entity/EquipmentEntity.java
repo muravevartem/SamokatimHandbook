@@ -1,6 +1,6 @@
 package com.muravev.samokatimhandbook.entity;
 
-import com.muravev.samokatimhandbook.model.EquipmentStatus;
+import com.muravev.samokatimhandbook.model.response.EquipmentStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

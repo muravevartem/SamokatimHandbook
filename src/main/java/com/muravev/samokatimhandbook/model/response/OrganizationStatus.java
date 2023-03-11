@@ -1,4 +1,4 @@
-package com.muravev.samokatimhandbook.model;
+package com.muravev.samokatimhandbook.model.response;
 
 public enum OrganizationStatus {
     APPROVED,
