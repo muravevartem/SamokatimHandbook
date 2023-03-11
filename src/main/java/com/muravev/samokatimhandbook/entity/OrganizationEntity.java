@@ -4,6 +4,7 @@ import com.muravev.samokatimhandbook.model.response.OrganizationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Set;
 
@@ -14,37 +15,23 @@ import java.util.Set;
 public class OrganizationEntity extends AbstractEntity<Long> {
 
     @Id
-    @SequenceGenerator(name = "seq_organization", sequenceName = "seq_organization")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_organization")
+    @SequenceGenerator(name = "seq_organization", sequenceName = "seq_organization", allocationSize = 1)
     private Long id;
 
     private String name;
 
     private String fullName;
 
+    @Column(unique = true)
     private String inn;
 
     @Enumerated(EnumType.STRING)
-    private OrganizationStatus status;
+    private OrganizationStatus status = OrganizationStatus.PENDING;
 
     private String tel;
+
     private String email;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "org_id"),
-            inverseJoinColumns = @JoinColumn(name = "admin_id"),
-            name = "org_admin"
-    )
-    private Set<UserEntity> admins;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "org_id"),
-            inverseJoinColumns = @JoinColumn(name = "lead_id"),
-            name = "org_lead"
-    )
-    private Set<UserEntity> leaders;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EquipmentEntity> equipments;
