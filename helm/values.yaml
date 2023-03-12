@@ -43,7 +43,7 @@ ingress:
   enabled: true
   className: "nginx"
   annotations:
-     kubernetes.io/ingress.class: nginx
+     kubernetes.io/ingress.class:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: handbook.1304294-cu57808.tw1.ru
