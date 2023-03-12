@@ -1,4 +1,4 @@
-name: Build 🍦
+name: Test 🍦
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: ["feature/**"]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

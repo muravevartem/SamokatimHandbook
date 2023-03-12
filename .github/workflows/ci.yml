@@ -23,9 +23,9 @@ jobs:
       - name: Docker Hub login
         run: docker login --username ${{ secrets.USERNAME_HUB }} --password ${{ secrets.PASSWORD_HUB }}
       - name: Docker build
-        run: docker build --tag ${{ secrets.USERNAME_HUB }}/$PROJECT_NAME:latest .
+        run: docker build --tag ${{ secrets.USERNAME_HUB }}/$PROJECT_NAME:$GITHUB_RUN_NUMBER .
       - name: Docker push
-        run: docker push ${{ secrets.USERNAME_HUB }}/$PROJECT_NAME:latest
+        run: docker push ${{ secrets.USERNAME_HUB }}/$PROJECT_NAME:$GITHUB_RUN_NUMBER
 #  deployment:
 #    runs-on: ubuntu-latest
 #    needs: build
