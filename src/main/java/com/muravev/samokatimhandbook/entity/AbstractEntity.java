@@ -35,7 +35,7 @@ public abstract class AbstractEntity<ID> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AbstractEntity<?> that = (AbstractEntity<?>) o;
-        return getId().equals(that.getId());
+        return getId() != null && getId().equals(that.getId());
     }
 
     @Override

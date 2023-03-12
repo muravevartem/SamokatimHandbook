@@ -1,10 +1,12 @@
 package com.muravev.samokatimhandbook.model.response;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.util.Set;
 
 @Data
+@Accessors(chain = true)
 public class Organization {
     private Long id;
     private String name;

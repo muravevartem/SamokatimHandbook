@@ -32,6 +32,12 @@ public class SimpleOrganizationService implements OrganizationService {
     }
 
     @Override
+    public Page<Organization> searchByKeyword(String keyword, Pageable pageable) {
+        return repository.findByKeyword(keyword, pageable)
+                .map(mapper::toDto);
+    }
+
+    @Override
     public Organization getOne(long id) {
         return repository.findById(id)
                 .map(mapper::toDto)
