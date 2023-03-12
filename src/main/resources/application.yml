@@ -8,6 +8,11 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
 integration:
   fns:
     base-url: 'https://suggestions.dadata.ru'
