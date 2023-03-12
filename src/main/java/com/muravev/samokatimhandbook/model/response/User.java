@@ -1,12 +1,9 @@
-package com.muravev.samokatimhandbook.model;
+package com.muravev.samokatimhandbook.model.response;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
-import org.apache.kafka.common.protocol.types.Field;
 
 import java.time.LocalDate;
 

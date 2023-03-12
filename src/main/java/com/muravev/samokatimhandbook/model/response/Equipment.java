@@ -1,4 +1,4 @@
-package com.muravev.samokatimhandbook.model;
+package com.muravev.samokatimhandbook.model.response;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

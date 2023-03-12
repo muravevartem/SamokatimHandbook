@@ -1,11 +1,10 @@
 package com.muravev.samokatimhandbook.entity;
 
 
-import com.muravev.samokatimhandbook.model.EquipmentType;
+import com.muravev.samokatimhandbook.model.response.EquipmentType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "equipment_model")

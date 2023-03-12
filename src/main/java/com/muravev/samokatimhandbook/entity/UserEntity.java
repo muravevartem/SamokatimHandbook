@@ -1,6 +1,6 @@
 package com.muravev.samokatimhandbook.entity;
 
-import com.muravev.samokatimhandbook.model.Gender;
+import com.muravev.samokatimhandbook.model.response.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
