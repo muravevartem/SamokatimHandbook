@@ -10,9 +10,11 @@ public interface OrganizationService {
 
     Organization create(OrganizationRequest organization);
 
-    Organization update(Long id, OrganizationRequest organization);
+    Organization update(long id, OrganizationRequest organization);
 
-    Organization approve(Long organizationId);
+    Organization approve(long organizationId);
 
-    void delete(Long orgId);
+    void delete(long orgId);
+
+    Organization getOne(long id);
 }

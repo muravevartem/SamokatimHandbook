@@ -22,23 +22,28 @@ public class OrganizationController {
         return organizationService.getAll(pageable);
     }
 
+    @GetMapping("/{id}")
+    public Organization getOne(@PathVariable long id) {
+        return organizationService.getOne(id);
+    }
+
     @PostMapping
     public Organization create(@Valid @RequestBody OrganizationRequest organization) {
         return organizationService.create(organization);
     }
 
     @PutMapping("/{id}")
-    public Organization update(@PathVariable Long id, @Valid @RequestBody OrganizationRequest organization) {
+    public Organization update(@PathVariable long id, @Valid @RequestBody OrganizationRequest organization) {
         return organizationService.update(id, organization);
     }
 
     @PutMapping("/{id}/approve")
-    public Organization approve(@PathVariable Long id) {
+    public Organization approve(@PathVariable long id) {
         return organizationService.approve(id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable long id) {
         organizationService.delete(id);
     }
 

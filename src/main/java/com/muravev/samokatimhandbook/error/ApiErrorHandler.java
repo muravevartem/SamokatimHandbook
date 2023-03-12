@@ -1,11 +1,17 @@
 package com.muravev.samokatimhandbook.error;
 
+import com.muravev.samokatimhandbook.error.data.BadField;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 @Slf4j
@@ -18,6 +24,24 @@ public class ApiErrorHandler {
                 .body(ApiError.builder()
                         .code(e.getStatus())
                         .message(e.getMessage())
+                        .build());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ApiError> handle(MethodArgumentNotValidException e) {
+        var allErrors = e.getBindingResult().getFieldErrors().stream()
+                .map(error ->
+                        new BadField(
+                                error.getField(),
+                                "Поле '%s' %s".formatted(error.getField(), error.getDefaultMessage())
+                        )
+                )
+                .toList();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiError.builder()
+                        .code(StatusCode.VALIDATION_ERROR)
+                        .message("Не валидный запрос")
+                        .data(allErrors)
                         .build());
     }
 

@@ -32,6 +32,14 @@ public class SimpleOrganizationService implements OrganizationService {
     }
 
     @Override
+    public Organization getOne(long id) {
+        return repository.findById(id)
+                .map(mapper::toDto)
+                .orElseThrow(() ->
+                        new ApiException(StatusCode.ORGANIZATION_NOT_FOUND));
+    }
+
+    @Override
     public Organization create(OrganizationRequest org) {
         if (repository.findByInn(org.getInn()).isPresent())
             throw new ApiException(StatusCode.ORGANIZATION_ALREADY_EXIST);
@@ -42,18 +50,24 @@ public class SimpleOrganizationService implements OrganizationService {
     }
 
     @Override
-    public Organization update(Long id, OrganizationRequest org) {
+    public Organization update(long id, OrganizationRequest org) {
         var orgFromDb = repository.findById(id)
                 .filter(o -> Objects.equals(o.getInn(), org.getInn()))
                 .orElseThrow(() -> new ApiException(StatusCode.ORGANIZATION_NOT_FOUND));
         var updatedOrg = mapper.mergeEntity(orgFromDb, org);
+        resetStatus(updatedOrg);
         var savedOrg = repository.save(updatedOrg);
         log.info("Update organization (inn: {})", savedOrg.getInn());
         return mapper.toDto(savedOrg);
     }
 
+    private void resetStatus(OrganizationEntity organization) {
+        log.info("Reset organization status");
+        organization.setStatus(OrganizationStatus.PENDING);
+    }
+
     @Override
-    public Organization approve(Long orgId) {
+    public Organization approve(long orgId) {
         var orgFromDb = repository.findById(orgId)
                 .orElseThrow(() -> new ApiException(StatusCode.ORGANIZATION_NOT_FOUND));
 
@@ -68,10 +82,11 @@ public class SimpleOrganizationService implements OrganizationService {
     }
 
     @Override
-    public void delete(Long orgId) {
+    public void delete(long orgId) {
         var orgFromDb = repository.findById(orgId)
                 .orElseThrow(() -> new ApiException(StatusCode.ORGANIZATION_NOT_FOUND));
         repository.delete(orgFromDb);
         log.info("Delete organization (inn:{})", orgFromDb.getInn());
     }
+
 }
