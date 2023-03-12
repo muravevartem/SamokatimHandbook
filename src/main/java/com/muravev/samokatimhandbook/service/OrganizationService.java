@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 public interface OrganizationService {
     Page<Organization> getAll(Pageable pageable);
 
+    Page<Organization> searchByKeyword(String keyword, Pageable pageable);
+
     Organization create(OrganizationRequest organization);
 
     Organization update(long id, OrganizationRequest organization);

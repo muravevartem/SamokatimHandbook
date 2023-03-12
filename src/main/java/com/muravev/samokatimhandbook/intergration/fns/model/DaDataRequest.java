@@ -1,4 +1,4 @@
 package com.muravev.samokatimhandbook.intergration.fns.model;
 
-public class InnResponse {
+public record DaDataRequest(String query) {
 }

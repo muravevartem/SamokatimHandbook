@@ -1,10 +1,10 @@
 package com.muravev.samokatimhandbook.entity;
 
+import com.muravev.samokatimhandbook.entity.equipment.EquipmentEntity;
 import com.muravev.samokatimhandbook.model.response.OrganizationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Set;
 

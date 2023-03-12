@@ -17,6 +17,11 @@ public class OrganizationController {
     private final OrganizationService organizationService;
 
 
+    @GetMapping(params = {"search"})
+    public Page<Organization> searchByKeyword(@RequestParam(defaultValue = "") String search, @PageableDefault Pageable pageable) {
+        return organizationService.searchByKeyword(search, pageable);
+    }
+
     @GetMapping
     public Page<Organization> getAll(@PageableDefault Pageable pageable) {
         return organizationService.getAll(pageable);

@@ -1,4 +1,4 @@
-package com.muravev.samokatimhandbook.model.response;
+package com.muravev.samokatimhandbook.model.response.equipment;
 
 public enum EquipmentType {
     BICYCLE,
