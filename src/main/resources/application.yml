@@ -16,4 +16,4 @@ management:
 integration:
   fns:
     base-url: 'https://suggestions.dadata.ru'
-    token: ${DADATA_TOKEN:}
+    token: '85e144d751ad4c1df93f49cf09535c23110e34c0'
